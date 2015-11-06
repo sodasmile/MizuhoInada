@@ -1,0 +1,4 @@
+./postPosisjonService.sh 93057057 59.676229 010.606291
+./postPosisjonService.sh 95084074 59.676229 010.606291
+./postPosisjonService.sh 40041446 59.676229 010.606291
+./postPosisjonService.sh 99852667 59.676229 010.606291

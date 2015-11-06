@@ -1,0 +1,34 @@
+[
+    {
+        "deltakerId": "JAVA_2-1", 
+        "lagId": "JAVA_2", 
+        "latitude": 42.0, 
+        "longitude": 112.0, 
+        "navn": "Emilie Falkberger", 
+        "tidspunkt": "2015-11-06T19:45:59.4895014"
+    }, 
+    {
+        "deltakerId": "JAVA_2-3", 
+        "lagId": "JAVA_2", 
+        "latitude": 0.0, 
+        "longitude": 0.0, 
+        "navn": "Kazi Saikat", 
+        "tidspunkt": "2015-11-06T19:48:19.5898242"
+    }, 
+    {
+        "deltakerId": "JAVA_2-4", 
+        "lagId": "JAVA_2", 
+        "latitude": 1234.0, 
+        "longitude": 4132.0, 
+        "navn": "Eivind Lysne", 
+        "tidspunkt": "2015-11-06T19:51:07.520306"
+    }, 
+    {
+        "deltakerId": "JAVA_2-2", 
+        "lagId": "JAVA_2", 
+        "latitude": 432.0, 
+        "longitude": 111.0, 
+        "navn": "Anders Smestad", 
+        "tidspunkt": "2015-11-06T19:50:30.9774188"
+    }
+]
