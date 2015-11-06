@@ -13,5 +13,10 @@
     "reactify": "~1.1.1",
     "gulp": "~3.9.0",
     "vinyl-source-stream": "~1.1.0"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
   }
 }
