@@ -17,6 +17,7 @@
  * under the License.
  */
 var app = {
+    currentPosition: {},
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -33,33 +34,48 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.log($(document));
-        document.getElementById("geobutton").addEventListener('click', function() {
-            app.log("shuya: geobutton clicked");
-            $.get("http://www.google.no", {
-                success: function(data) {
-                    app.log(data);
-                }
-            });
-            navigator.geolocation.getCurrentPosition(
-                    function(geopos) {
-                        app.log("shuya: found geopos: " + geopos);
-                        var position = "lat: " + geopos.coords.latitude +
-                                       ", lon: " + geopos.coords.longitude +
-                                       ", acc: " + geopos.coords.accuracy;
-                        document.getElementById("geolocation").innerText = position;
-                        app.log("shuya: updated UI with geolocation : " + position);
+        navigator.geolocation.getCurrentPosition(
+                function(geopos) {
+                    app.currentPosition = geopos.coords;
+                    app.log("Initial position: " + JSON.stringify(app.currentPosition));
+                },
+                function(error) {
+                    app.log(error);
+                },{
+                    timeout: 30000
+                });
+
+        navigator.geolocation.watchPosition(
+                function(geopos) {
+                    app.currentPosition = geopos.coords;
+                    app.showPosition(geopos.coords);
+                    app.log("Position changed to: " + JSON.stringify(geopos.coords));
+                },
+                function(error) {
+                    app.log(error);
+                },
+                {
+                    timeout: 30000
+                });
+
+        document.getElementById("postLocation").addEventListener('click', function() {
+            request.postPosition("95084074", app.currentPosition,
+                    function(data) {
+                        app.log("Successfully posted: " + data);
                     },
-                    function(error) {
-                        app.log(error);
-                    },{
-                        timeout: 30000
+                    function(code, text) {
+                        app.log("Could not post position: status-code: " + code + ", text: " + text);
                     });
-            app.log("geobutton clicked finish");
         });
     },
+    showPosition : function(coords) {
+        var position = "lat: " + coords.latitude +
+                ", lon: " + coords.longitude +
+                ", acc: " + coords.accuracy;
+        document.getElementById("geoLocation").innerText = position;
+    },
     log : function(message) {
-        console.log("shuya: " + message);
+        document.getElementById("log").innerHTML = message;
     }
 };
 
