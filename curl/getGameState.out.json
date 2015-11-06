@@ -1,0 +1,64 @@
+{
+    "achievements": [], 
+    "lagFarge": "00CC99", 
+    "lagId": "JAVA_2", 
+    "lagIkon": null, 
+    "lagNavn": "Java 2", 
+    "poster": [
+        {
+            "harRegistert": false, 
+            "latitude": 59.67486, 
+            "longitude": 10.606699, 
+            "poengVerdi": 70
+        }, 
+        {
+            "harRegistert": false, 
+            "latitude": 59.675376, 
+            "longitude": 10.60732, 
+            "poengVerdi": 80
+        }, 
+        {
+            "harRegistert": false, 
+            "latitude": 59.674135, 
+            "longitude": 10.605506, 
+            "poengVerdi": 100
+        }, 
+        {
+            "harRegistert": false, 
+            "latitude": 59.678658, 
+            "longitude": 10.608035, 
+            "poengVerdi": 100
+        }, 
+        {
+            "harRegistert": false, 
+            "latitude": 59.677206, 
+            "longitude": 10.606278, 
+            "poengVerdi": 100
+        }, 
+        {
+            "harRegistert": false, 
+            "latitude": 59.675303, 
+            "longitude": 10.604787, 
+            "poengVerdi": 100
+        }, 
+        {
+            "harRegistert": false, 
+            "latitude": 59.674003, 
+            "longitude": 10.604836, 
+            "poengVerdi": 80
+        }, 
+        {
+            "harRegistert": false, 
+            "latitude": 59.674488, 
+            "longitude": 10.607822, 
+            "poengVerdi": 70
+        }
+    ], 
+    "ranking": {
+        "poengBakLagetForan": 200, 
+        "poengForanLagetBak": 0, 
+        "rank": 3
+    }, 
+    "score": 0, 
+    "vaapen": []
+}
