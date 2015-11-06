@@ -17,7 +17,7 @@
  * under the License.
  */
 var app = {
-    currentPosition: {},
+    posInfo: undefined,
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -34,48 +34,61 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        navigator.geolocation.getCurrentPosition(
-                function(geopos) {
-                    app.currentPosition = geopos.coords;
-                    app.log("Initial position: " + JSON.stringify(app.currentPosition));
-                },
-                function(error) {
-                    app.log(error);
-                },{
-                    timeout: 30000
-                });
-
         navigator.geolocation.watchPosition(
                 function(geopos) {
-                    app.currentPosition = geopos.coords;
-                    app.showPosition(geopos.coords);
-                    app.log("Position changed to: " + JSON.stringify(geopos.coords));
+                    if (app.posInfo === undefined) {
+                        app.posInfo = {
+                            position: geopos.coords,
+                            updated: new Date()
+                        };
+                    } else {
+                        // 5 seconds since last updated.
+                        if ((new Date() - app.posInfo.updated) > 5000) {
+                            app.posInfo = {
+                                position: geopos.coords,
+                                updated: new Date()
+                            };
+                            app.postPosition(geopos.coords);
+                        }
+                    }
                 },
                 function(error) {
                     app.log(error);
                 },
                 {
-                    timeout: 30000
+                    timeout: 30000,
+                    enableHighAccuracy: true,
+                    maximumAge: 5000
                 });
-
-        document.getElementById("postLocation").addEventListener('click', function() {
-            request.postPosition("95084074", app.currentPosition,
-                    function(data) {
-                        app.log("Successfully posted: " + data);
-                    },
-                    function(code, text) {
-                        app.log("Could not post position: status-code: " + code + ", text: " + text);
-                    });
-        });
     },
     showPosition : function(coords) {
-        var position = "lat: " + coords.latitude +
-                ", lon: " + coords.longitude +
-                ", acc: " + coords.accuracy;
-        document.getElementById("geoLocation").innerText = position;
+        document.getElementById("long").innerText = coords.longitude;
+        document.getElementById("lat").innerText = coords.latitude;
+        document.getElementById("locUpdated").innerText = new Date().toString();
     },
+
     log : function(message) {
-        document.getElementById("log").innerHTML = message;
+        document.getElementById("log").innerHTML = "On <strong>" + new Date() + "</strong><br/>" + message;
+    },
+
+    postPosition : function(position) {
+        var deltaker = document.getElementById("mobileNo").value;
+        if (!app.isValidMobilNo(deltaker)) {
+            app.log("Please write a mobile no.");
+            return;
+        }
+        request.postPosition(deltaker.trim(), position,
+                function(data) {
+                    app.showPosition(position);
+                    app.log("Reported: " + data);
+                },
+                function(code, text) {
+                    alert("Could not post position: status-code: " + code + ", text: " + text);
+                });
+    },
+
+    isValidMobilNo : function(deltaker) {
+        return deltaker !== undefined && deltaker.trim().length === 8;
     }
 };
 

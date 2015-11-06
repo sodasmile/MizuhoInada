@@ -19,7 +19,7 @@ var request = {
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4) {
                 if (xmlhttp.status == 200) {
-                    success(xmlhttp.responseText + ", send: " + data);
+                    success("Deltaker: " + deltaker + ", response: " + xmlhttp.responseText + ", send: " + data);
                 } else {
                     error(xmlhttp.status, xmlhttp.responseText);
                 }

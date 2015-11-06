@@ -43,12 +43,35 @@
             </p>
         </div>
         <div>
-            <p id="geoLocation">
-                Where are we?
-            </p>
-            <input id="postLocation" type="button" value="Post location"/>
+            <span>Mobilno: </span><input id="mobileNo" type="number" size="8" maxlength="8"/>
         </div>
+        <table>
+            <tr>
+                <td colspan="2">Last reported location</td>
+            </tr>
+            <tr>
+                <td>Longitude:</td>
+                <td id="long">init</td>
+            </tr>
+            <tr>
+                <td>Latitude:</td>
+                <td id="lat">init</td>
+            </tr>
+            <tr>
+                <td>Updated:</td>
+                <td id="locUpdated">init</td>
+            </tr>
+        </table>
         <div id="log">&nbsp;</div>
+        <!--table>
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    <input id="postLocation" type="button" value="Post location"/>
+                </td>
+            </tr>
+        </table-->
+
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/request.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
