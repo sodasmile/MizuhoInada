@@ -35,7 +35,6 @@ function setCurrentPosition(map) {
 
 function setMyPositionMarker(map) {
    
-            //myLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             myLocation = new google.maps.LatLng("59.676229", "010.606291");
             var marker = new google.maps.Marker({
                 position: myLocation,
