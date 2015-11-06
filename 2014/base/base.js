@@ -14,11 +14,12 @@ $(document).ready(function() {
 function initializeMap() {
     
     var mapOptions = {
-        center: { lat: 60, lng: 9},
+        center: { lat: "59.676229", lng: "010.606291"},
         zoom: 16
     };
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-    setCurrentPosition(map);
+    setMyPositionMarker(map);
+    //setCurrentPosition(map);
     return map;
 }
 
@@ -34,9 +35,8 @@ function setCurrentPosition(map) {
 
 function setMyPositionMarker(map) {
    
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            myLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            //myLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            myLocation = new google.maps.LatLng("59.676229", "010.606291");
             var marker = new google.maps.Marker({
                 position: myLocation,
                 title:"Kor i svartre er eg?"
@@ -45,8 +45,7 @@ function setMyPositionMarker(map) {
             
             marker.setMap(map);
             map.setCenter(myLocation);
-        });
-    }
+
     
 }
 	
