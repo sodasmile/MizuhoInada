@@ -21,7 +21,7 @@ export default class MessageStream extends React.Component {
 
         let messages = _.map(this.state.messages, (message) => {
             return (
-                <li>{message}</li>
+                <li style={styles.li}>{message}</li>
             );
         });
 
