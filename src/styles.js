@@ -3,9 +3,16 @@
 const styles = {
     center: {
         margin: 'auto',
-        width: '60%',
+        width: '40%',
         border: '3px solid #73AD21',
         padding: '10px'
+    },
+    li: {
+        margin: '10px',
+        padding: '5px',
+        listStyle: 'none',
+        cursor: 'pointer',
+        background: 'lightgrey'
     }
 };
 

@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import styles from './styles';
 
 export default class RegisterPost extends React.Component {
 
@@ -40,19 +41,31 @@ export default class RegisterPost extends React.Component {
 
     render () {
         return (
-            <div>
+            <div style={styles.center}>
                 <form onSubmit={this.onSubmit}>
-                    <label>Postkode
-                        <input type="text" value={this.state.code} onChange={this.onChange}/>
-                    </label>
-                    <label>Bombe?
-                        <input type="checkbox" onChange={this.onChangeBomb}/>
-                    </label>
-                    <label>Felle?
-                        <input type="checkbox" onChange={this.onChangeTrap}/>
-                    </label>
-                    <input type="submit" value="Registrer"/>
-                    <input type="reset" value="Reset"/>
+                    <ul>
+                        <li style={styles.li}>
+                            <label>Postkode
+                                <input type="text" value={this.state.code} onChange={this.onChange}/>
+                            </label>
+                        </li>
+                        <li style={styles.li}>
+                            <label>Bombe?
+                                <input type="checkbox" onChange={this.onChangeBomb}/>
+                            </label>
+                        </li>
+                        <li style={styles.li}>
+                            <label>Felle?
+                                <input type="checkbox" onChange={this.onChangeTrap}/>
+                            </label>
+                        </li>
+                        <li style={styles.li}>
+                            <input type="submit" value="Registrer"/>
+                        </li>
+                        <li style={styles.li}>
+                            <input type="reset" value="Reset"/>
+                        </li>
+                    </ul>
                 </form>
             </div>
         );

@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import _ from 'lodash';
 import settings from './settings';
 import styles from './styles';
 
@@ -9,32 +10,33 @@ export default class App extends React.Component {
 
     constructor (args) {
         super(args);
-        this.state = {playerCode: ''};
-        this.onSubmit = this.onSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
+        this.buttons = [
+            {name: 'Anders', phone: '40041446'},
+            {name: 'Eivind', phone: '93057057'},
+            {name: 'Emilie', phone: '99852667'},
+            {name: 'Saikat', phone: '95084074'}
+        ];
+        this.onClick = this.onClick.bind(this);
     }
 
-    onSubmit (e) {
-        e.preventDefault();
-        settings.playerCode = this.state.playerCode;
+    onClick (phone) {
+        settings.playerCode = phone;
         this.context.history.pushState(null, '/menu');
     }
 
-    onChange (e) {
-        e.preventDefault();
-        this.setState({playerCode: e.target.value});
-    }
+    render () {
 
-    render () { console.log(this.state.playerCode);
+        let buttons = _.map(this.buttons, (button) => {
+            return (
+                <li style={styles.li}><a onClick={this.onClick.bind(button.phone)}>{button.name}</a></li>
+            );
+        });
+
         return (
             <div style={styles.center}>
-                <form onSubmit={this.onSubmit}>
-                    <label>
-                        Telefonnummer
-                        <input type="text" onChange={this.onChange}/>
-                    </label>
-                    <input type="submit" value="OK"/>
-                </form>
+                <ul>
+                    {buttons}
+                </ul>
             </div>
         );
     }
