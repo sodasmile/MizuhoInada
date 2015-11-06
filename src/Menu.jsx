@@ -10,10 +10,10 @@ export default class Menu extends React.Component {
     constructor (props) {
         super(props);
         this.buttons = [
-            {path: '/', text: 'Registrer post'},
+            {path: '/register_post', text: 'Registrer post'},
             {path: '/post_message', text: 'Send melding'},
             {path: '/message_stream', text: 'Meldingsstrøm'},
-            {path: '/', text: 'Other stuff'}
+            {path: '/', text: 'Kart!!!'}
         ];
     }
 

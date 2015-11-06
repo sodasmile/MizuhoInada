@@ -8,6 +8,7 @@ import App from './App';
 import Menu from './Menu';
 import MessageStream from './MessageStream';
 import PostMessage from './PostMessage';
+import RegisterPost from './RegisterPost';
 
 import createHashHistory from 'history/lib/createHashHistory';
 let history = createHashHistory();
@@ -18,5 +19,6 @@ ReactDOM.render((
         <Route path='/menu' component={Menu}/>
         <Route path='/message_stream' component={MessageStream}/>
         <Route path='/post_message' component={PostMessage}/>
+        <Route path='/register_post' component={RegisterPost}/>
     </Router>
 ), document.getElementById('app'));
