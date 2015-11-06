@@ -6,11 +6,13 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "react": "~0.14.2",
-    "react-dom": "~0.14.2"
+    "react-dom": "~0.14.2",
+    "history": "~1.13.0",
+    "react-router": "~1.0.0-rc4"
   },
   "devDependencies": {
     "browserify": "~12.0.1",
-    "babelify": "~7.2.0",
+    "babelify": "~6.3.0",
     "reactify": "~1.1.1",
     "gulp": "~3.9.0",
     "vinyl-source-stream": "~1.1.0"
