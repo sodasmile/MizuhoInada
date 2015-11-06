@@ -13,7 +13,9 @@ $(document).ready(function () {
         poster = data.poster;
         for (i = 0; i < poster.length; i++) {
             post = poster[i];
-            setMyPositionMarker(map, post.latitude, post.longitude);
+            var bounce = post.harRegistert;
+            //alert("Post " + i + " " + bounce);
+            setMyPositionMarker(map, post.latitude, post.longitude, bounce);
         }
     });
 
@@ -23,7 +25,8 @@ $(document).ready(function () {
 function initializeMap() {
 
     var mapOptions = {
-        center: {lat: "59.676229", lng: "010.606291"}, zoom: 16
+        center: { lat: "59.676229", lng: "010.606291" },
+        zoom: 16
     };
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     //setMyPositionMarker(map);
@@ -41,11 +44,17 @@ function setCurrentPosition(map) {
     }
 }
 
-function setMyPositionMarker(map, latitude, longitude) {
-
+function setMyPositionMarker(map, latitude, longitude, bounce) {
+    if (bounce) {
+        animation = google.maps.Animation.DROP;
+    } else {
+        animation = google.maps.Animation.BOUNCE;
+    }
     myLocation = new google.maps.LatLng(latitude, longitude);
     var marker = new google.maps.Marker({
-        position: myLocation, title: "Kor i svartre er eg?"
+        position: myLocation,
+        title: "Kor i svartre er eg?",
+        animation: animation
     });
 
 
