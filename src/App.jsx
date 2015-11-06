@@ -2,6 +2,7 @@
 
 import React from 'react';
 import settings from './settings';
+import styles from './styles';
 
 
 export default class App extends React.Component {
@@ -26,7 +27,7 @@ export default class App extends React.Component {
 
     render () { console.log(this.state.playerCode);
         return (
-            <div>
+            <div style={styles.center}>
                 <form onSubmit={this.onSubmit}>
                     <label>
                         Telefonnummer
