@@ -14,6 +14,26 @@ var request = {
         request.doRequest("POST", url, deltaker, JSON.stringify(value), success, error);
     },
 
+    registerPost : function(deltaker, secret, success, error) {
+        var url = "https://bbr2015.azurewebsites.net/api/GameService";
+        var value = {
+            postKode: secret,
+            bruktVåpen: "FELLE"
+        };
+        request.doRequest("POST", url, deltaker, JSON.stringify(value), success, function() {
+            var value = {
+                postKode: secret,
+                bruktVåpen: "BOMBE"
+            };
+            request.doRequest("POST", url, deltaker, JSON.stringify(value), success, function() {
+                var value = {
+                    postKode: secret
+                };
+                request.doRequest("POST", url, deltaker, JSON.stringify(value), success, error);
+            });
+        });
+    },
+
     doRequest : function(method, url, deltaker, data, success, error) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {

@@ -60,6 +60,9 @@ var app = {
                     enableHighAccuracy: true,
                     maximumAge: 5000
                 });
+        document.getElementById("registerSecret").addEventListener('click', function() {
+            app.registerPost();
+        });
     },
     showPosition : function(coords) {
         document.getElementById("long").innerText = coords.longitude;
@@ -69,6 +72,26 @@ var app = {
 
     log : function(message) {
         document.getElementById("log").innerHTML = "On <strong>" + new Date() + "</strong><br/>" + message;
+    },
+
+    registerPost : function() {
+        var deltaker = document.getElementById("mobileNo").value;
+        if (!app.isValidMobilNo(deltaker)) {
+            app.log("Please write a mobile no.");
+            return;
+        }
+        var secretCode = document.getElementById("secretCode").value;
+        if (secretCode !== undefined && secretCode.trim() !== "") {
+            request.registerPost(deltaker.trim(), secretCode,
+                    function(data) {
+                        alert("Successfully posted: " + data);
+                    },
+                    function(code, text) {
+                        alert("Could not register poll/post: status-code: " + code + ", text: " + text);
+                    });
+        } else {
+            alert("A secret-code must be entered! secretCode = '" + secretCode + "'");
+        }
     },
 
     postPosition : function(position) {

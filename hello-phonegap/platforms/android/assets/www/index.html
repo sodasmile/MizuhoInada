@@ -63,15 +63,25 @@
             </tr>
         </table>
         <div id="log">&nbsp;</div>
-        <!--table>
+        <hr/>
+        <table>
             <tr>
-                <td>&nbsp;</td>
+                <td colspan="2">Check-in poll/post</td>
+            </tr>
+            <tr>
+                <td><span>Secret-code</span></td>
                 <td>
-                    <input id="postLocation" type="button" value="Post location"/>
+                    <input id="secretCode" type="text" min="15" value=""/>
                 </td>
             </tr>
-        </table-->
-
+            <tr>
+                <td><span>&nbsp;</span></td>
+                <td>
+                    <input id="registerSecret" type="button" value="Register poll/post"/>
+                </td>
+            </tr>
+        </table>
+        <hr/>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/request.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
