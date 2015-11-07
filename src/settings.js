@@ -1,8 +1,8 @@
 'use strict';
 
 const settings = {
-    endpoint: '',
-    teamCode: '',
+    endpoint: 'https://bbr2015.azurewebsites.net/api',
+    teamCode: 'nedover_lia_triller_en_traktor',
     playerCode: ''
 };
 

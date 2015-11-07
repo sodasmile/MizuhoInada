@@ -16,10 +16,10 @@ export default class App extends React.Component {
             {name: 'Emilie', phone: '99852667'},
             {name: 'Saikat', phone: '95084074'}
         ];
-        this.onClick = this.onClick.bind(this);
+        this._onClick = this._onClick.bind(this);
     }
 
-    onClick (phone) {
+    _onClick (phone) {
         settings.playerCode = phone;
         this.context.history.pushState(null, '/menu');
     }
@@ -28,7 +28,7 @@ export default class App extends React.Component {
 
         let buttons = _.map(this.buttons, (button) => {
             return (
-                <li style={styles.li}><a onClick={this.onClick.bind(button.phone)}>{button.name}</a></li>
+                <li style={styles.li}><a onClick={this._onClick.bind(this, button.phone)}>{button.name}</a></li>
             );
         });
 

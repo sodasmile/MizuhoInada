@@ -1,6 +1,8 @@
 'use strict';
 
 import React from 'react';
+import $ from 'jquery';
+import settings from './settings';
 import styles from './styles';
 
 
@@ -20,8 +22,19 @@ export default class PostMessage extends React.Component {
 
     onSubmit (e) {
         e.preventDefault();
-
-        // TODO: Send melding her
+        $.ajax({
+            url: `${settings.endpoint}/Meldinger`,
+            headers: {
+                'LagKode': `${settings.teamCode}`,
+                'DeltakerKode': `${settings.playerCode}`
+            },
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify({tekst: this.state.message}),
+            success: (data) => console.log(data),
+            error: (xhr, status, err) => console.log(`${status}: ${err}`)
+        });
     }
 
     render () {
