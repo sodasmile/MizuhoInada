@@ -1,6 +1,8 @@
 'use strict';
 
 import React from 'react';
+import $ from 'jquery';
+import settings from './settings';
 import styles from './styles';
 
 export default class RegisterPost extends React.Component {
@@ -37,8 +39,13 @@ export default class RegisterPost extends React.Component {
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify(data),
-            success: () => this.context.history.pushState(null, '/menu'),
-            error: (xhr, status, err) => console.log(`${status}: ${err}`)
+            success: (data) => {
+                this.context.history.pushState(null, '/menu');
+            },
+            error: (xhr, status, err) => {
+                console.log(`${status}: ${err}`);
+                this.context.history.pushState(null, '/menu');
+            }
         });
     }
 
