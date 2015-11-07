@@ -12,7 +12,7 @@ $(document).ready(function () {
             post = poster[i];
             var bounce = post.harRegistert;
             //alert("Post " + i + " " + bounce);
-            setMyPositionMarker(map, post.latitude, post.longitude, bounce, "BLUE");
+            setMyPositionMarker(map, post.latitude, post.longitude, bounce, "RED");
         }
     });
 
@@ -24,8 +24,29 @@ $(document).ready(function () {
     }).then(function (data) {
         for (i = 0; i < data.length; i++) {
             person = data[i];
+
+
+            var dot;
             //alert("Post " + i + " " + bounce);
-            setMyPositionMarker(map, person.latitude, person.longitude, true, "PINK");
+            switch (person.deltakerId){
+                case "JAVA_2-1":
+                    dot = "GREEN";
+                    break;
+                case "JAVA_2-2":
+                    dot = "YELLOW";
+                    break;
+                case "JAVA_2-3":
+                    dot = "PINK";
+                    break;
+                case "JAVA_2-4":
+                    dot = "BLUE";
+                    break;
+                default:
+                    dot = "RED";
+                    break;
+
+            }
+            setMyPositionMarker(map, person.latitude, person.longitude, true, dot);
 
         }
     });
@@ -71,6 +92,9 @@ function setMyPositionMarker(map, latitude, longitude, bounce, dot) {
             break;
         case "BLUE":
             icon= 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+            break;
+        case "YELLOW":
+            icon= 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
             break;
         case "PINK":
         default:
