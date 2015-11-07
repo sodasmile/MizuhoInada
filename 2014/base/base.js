@@ -1,6 +1,23 @@
-$(document).ready(function () {
+var markers = [];
+
+$(document).ready(boot);
+
+function boot() {
     var map = initializeMap();
     setCurrentPosition(map);
+
+    rattata();
+
+    setInterval(rattata, 6000);
+}
+
+
+function rattata() {
+
+    for (i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+
     $.ajax({
         url: "https://bbr2015.azurewebsites.net/api/GameStateFeed", headers: {
             "Content-Type": "application/json", "Accept": "application/json", "LagKode": "nedover_lia_triller_en_traktor", "DeltakerKode": "40041446"
@@ -27,7 +44,6 @@ $(document).ready(function () {
 
 
             var dot;
-            //alert("Post " + i + " " + bounce);
             switch (person.deltakerId){
                 case "JAVA_2-1":
                     dot = "GREEN";
@@ -47,12 +63,10 @@ $(document).ready(function () {
 
             }
             setMyPositionMarker(map, person.latitude, person.longitude, true, dot);
-
         }
     });
+};
 
-
-});
 
 function initializeMap() {
 
@@ -78,7 +92,7 @@ function setCurrentPosition(map) {
 function setMyPositionMarker(map, latitude, longitude, bounce, dot) {
 
     if (bounce) {
-        animation = google.maps.Animation.DROP;
+        animation = google.maps.Animation.NONE;
     } else {
         animation = google.maps.Animation.BOUNCE;
     }
@@ -105,11 +119,13 @@ function setMyPositionMarker(map, latitude, longitude, bounce, dot) {
     myLocation = new google.maps.LatLng(latitude, longitude);
     var marker = new google.maps.Marker({
         position: myLocation, animation: animation,
-        icon: icon
+        icon: icon,
+        tooltip: "Fiskedisk"
     });
-
 
     marker.setMap(map);
     map.setCenter(myLocation);
+
+    markers.push(marker);
 }
 	
