@@ -34,6 +34,27 @@ var request = {
         });
     },
 
+    getMeldinger : function(deltaker, success, error) {
+        var url = "https://bbr2015.azurewebsites.net/api/Meldinger";
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4) {
+                if (xmlhttp.status == 200) {
+                    var response = JSON.parse(xmlhttp.responseText);
+                    success(response.meldinger);
+                } else {
+                    error(xmlhttp.status, xmlhttp.responseText);
+                }
+            }
+        };
+        xmlhttp.open('GET', url, true);
+        xmlhttp.setRequestHeader("LagKode", "nedover_lia_triller_en_traktor");
+        xmlhttp.setRequestHeader("DeltakerKode", deltaker);
+        xmlhttp.setRequestHeader('Accept', 'application/json');
+        xmlhttp.setRequestHeader('Content-Type', 'application/json');
+        xmlhttp.send();
+    },
+
     doRequest : function(method, url, deltaker, data, success, error) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {

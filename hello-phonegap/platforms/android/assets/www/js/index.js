@@ -60,9 +60,12 @@ var app = {
                     enableHighAccuracy: true,
                     maximumAge: 5000
                 });
+
         document.getElementById("registerSecret").addEventListener('click', function() {
             app.registerPost();
         });
+
+        setInterval(app.updateMessageBox, 5000);
     },
     showPosition : function(coords) {
         document.getElementById("long").innerText = coords.longitude;
@@ -107,6 +110,26 @@ var app = {
                 },
                 function(code, text) {
                     alert("Could not post position: status-code: " + code + ", text: " + text);
+                });
+    },
+
+    updateMessageBox : function() {
+        var deltaker = document.getElementById("mobileNo").value;
+        if (!app.isValidMobilNo(deltaker)) {
+            app.log("Please write a mobile no.");
+            return;
+        }
+        request.getMeldinger(deltaker,
+                function(meldinger) {
+                    var messages = "";
+                    for (var meldingIdx in meldinger) {
+                        var melding = meldinger[meldingIdx];
+                        messages = messages + melding.melding + " on " + melding.tidspunktUtc + "<br/>";
+                    }
+                    document.getElementById("messages").innerHTML = messages;
+                },
+                function(status, text) {
+                    app.log("Could not update messages status-code: " + code + ", text: " + text);
                 });
     },
 
