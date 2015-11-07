@@ -14,24 +14,13 @@ var request = {
         request.doRequest("POST", url, deltaker, JSON.stringify(value), success, error);
     },
 
-    registerPost : function(deltaker, secret, success, error) {
+    registerPost : function(deltaker, secret, weapon, success, error) {
         var url = "https://bbr2015.azurewebsites.net/api/GameService";
         var value = {
             postKode: secret,
-            bruktVåpen: "FELLE"
+            bruktVåpen: weapon
         };
-        request.doRequest("POST", url, deltaker, JSON.stringify(value), success, function() {
-            var value = {
-                postKode: secret,
-                bruktVåpen: "BOMBE"
-            };
-            request.doRequest("POST", url, deltaker, JSON.stringify(value), success, function() {
-                var value = {
-                    postKode: secret
-                };
-                request.doRequest("POST", url, deltaker, JSON.stringify(value), success, error);
-            });
-        });
+        request.doRequest("POST", url, deltaker, JSON.stringify(value), success, error);
     },
 
     getMeldinger : function(deltaker, success, error) {

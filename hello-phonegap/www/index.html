@@ -36,12 +36,7 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div>
-            <h1>Lag nummer: Java 2</h1>
-            <p>
-                The serious folk.
-            </p>
-        </div>
+        <h1>Lag nummer: Java 2</h1>
         <div>
             <span>Mobilno: </span><input id="mobileNo" type="number" size="8" maxlength="8"/>
         </div>
@@ -49,6 +44,18 @@
         <table>
             <tr>
                 <td colspan="2">Check-in poll/post</td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="brukFelle" type="checkbox" checked/>
+                </td>
+                <td><span>Bruk felle</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="brukBombe" type="checkbox"/>
+                </td>
+                <td><span>Bruk bombe</span></td>
             </tr>
             <tr>
                 <td><span>Secret-code</span></td>
@@ -81,7 +88,7 @@
                 <td id="locUpdated">init</td>
             </tr>
         </table>
-        <div id="log">&nbsp;</div>
+        <!--div id="log">&nbsp;</div-->
         <hr/>
         <div>
             <span>Meldinger:</span>

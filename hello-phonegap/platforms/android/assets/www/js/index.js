@@ -74,7 +74,7 @@ var app = {
     },
 
     log : function(message) {
-        document.getElementById("log").innerHTML = "On <strong>" + new Date() + "</strong><br/>" + message;
+        // document.getElementById("log").innerHTML = "On <strong>" + new Date() + "</strong><br/>" + message;
     },
 
     registerPost : function() {
@@ -85,9 +85,16 @@ var app = {
         }
         var secretCode = document.getElementById("secretCode").value;
         if (secretCode !== undefined && secretCode.trim() !== "") {
-            request.registerPost(deltaker.trim(), secretCode,
+            var weapon = null;
+            if (document.getElementById("brukFelle").checked) {
+                weapon = "FELLE";
+            } else if (document.getElementById("brukBombe").checked) {
+                weapon = "BOMBE";
+            }
+            request.registerPost(deltaker.trim(), secretCode, weapon,
                     function(data) {
-                        alert("Successfully posted: " + data);
+                        app.updateMessageBox();
+                        alert("Posted " + data);
                     },
                     function(code, text) {
                         alert("Could not register poll/post: status-code: " + code + ", text: " + text);
@@ -106,7 +113,7 @@ var app = {
         request.postPosition(deltaker.trim(), position,
                 function(data) {
                     app.showPosition(position);
-                    app.log("Reported: " + data);
+//                    app.log("Reported: " + data);
                 },
                 function(code, text) {
                     alert("Could not post position: status-code: " + code + ", text: " + text);
