@@ -61,3 +61,8 @@ export default class PostMessage extends React.Component {
         );
     }
 }
+
+PostMessage.contextTypes = {
+    location: React.PropTypes.object,
+    history: React.PropTypes.object
+};
