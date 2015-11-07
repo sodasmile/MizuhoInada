@@ -47,13 +47,17 @@ export default class PostMessage extends React.Component {
                 <form onSubmit={this.onSubmit}>
                     <ul>
                         <li style={styles.li}>
-                            <textarea style={{width: '100%'}} value={this.state.message} onChange={this.onChange}/>
+                            <textarea style={{width: '100%'}}
+                                      value={this.state.message}
+                                      onChange={this.onChange}
+                                      cols={35}
+                                        rows={10}/>
                         </li>
                         <li style={styles.li}>
-                            <input type="submit" value="Send"/>
+                            <input style={{width:'100%', height: '40px'}} type="submit" value="Send"/>
                         </li>
                         <li style={styles.li}>
-                            <input type="reset" value="Reset"/>
+                            <input style={{width:'100%', height: '40px'}} type="reset" value="Reset"/>
                         </li>
                     </ul>
                 </form>
