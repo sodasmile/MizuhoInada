@@ -23,7 +23,7 @@ export default class Menu extends React.Component {
         let buttons = _.map(this.buttons, (button) => {
             return (
                 <li style={styles.li}>
-                    <Link to={button.path}>
+                    <Link style={{width:'100%'}} to={button.path}>
                         {button.text}
                     </Link>
                 </li>

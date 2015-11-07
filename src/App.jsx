@@ -28,7 +28,7 @@ export default class App extends React.Component {
 
         let buttons = _.map(this.buttons, (button) => {
             return (
-                <li style={styles.li}><a onClick={this._onClick.bind(this, button.phone)}>{button.name}</a></li>
+                <li style={styles.li}><a style={{width:'100%'}} onClick={this._onClick.bind(this, button.phone)}>{button.name}</a></li>
             );
         });
 
