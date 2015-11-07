@@ -23,6 +23,23 @@ var request = {
         request.doRequest("POST", url, deltaker, JSON.stringify(value), success, error);
     },
 
+    getWeaponStatus : function(deltaker, success, error) {
+        var url = "https://bbr2015.azurewebsites.net/api/GameStateFeed";
+        request.doRequest("GET", url, deltaker, '',
+                function(data) {
+                    var result = JSON.parse(data);
+                    var weapons = "";
+                    if (result.vaapen && result.vaapen.length === 0) {
+                        weapons = "None";
+                    } else {
+                        for (var resultIdx in result.vaapen) {
+                            weapons = weapons + result.vaapen[resultIdx].vaapenId + "<br/>";
+                        }
+                    }
+                    success(weapons);
+                }, error);
+    },
+
     getMeldinger : function(deltaker, success, error) {
         var url = "https://bbr2015.azurewebsites.net/api/Meldinger";
         var xmlhttp = new XMLHttpRequest();
@@ -49,7 +66,13 @@ var request = {
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4) {
                 if (xmlhttp.status == 200) {
-                    success("Deltaker: " + deltaker + ", response: " + xmlhttp.responseText + ", send: " + data);
+                    var response = null;
+                    if (method === 'POST') {
+                        response = data;
+                    } else {
+                        response = xmlhttp.responseText;
+                    }
+                    success(response);
                 } else {
                     error(xmlhttp.status, xmlhttp.responseText);
                 }
@@ -58,6 +81,7 @@ var request = {
         xmlhttp.open(method, url, true);
         xmlhttp.setRequestHeader("LagKode", "nedover_lia_triller_en_traktor");
         xmlhttp.setRequestHeader("DeltakerKode", deltaker);
+        xmlhttp.setRequestHeader('Accept', 'application/json');
         xmlhttp.setRequestHeader('Content-Type', 'application/json');
         xmlhttp.send(data);
     }

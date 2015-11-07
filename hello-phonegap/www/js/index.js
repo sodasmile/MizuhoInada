@@ -65,7 +65,21 @@ var app = {
             app.registerPost();
         });
 
-        setInterval(app.updateMessageBox, 5000);
+        setInterval(app.updateMessageBox, 4000);
+        setInterval(function() {
+            var deltaker = document.getElementById("mobileNo").value;
+            if (!app.isValidMobilNo(deltaker)) {
+                app.log("Please write a mobile no.");
+                return;
+            }
+            request.getWeaponStatus(deltaker,
+                    function(data) {
+                        document.getElementById("weaponsAvailable").innerHTML = data;
+                    },
+                    function(code, text) {
+                        alert("Could not register poll/post: status-code: " + code + ", text: " + text);
+                    });
+        }, 3000);
     },
     showPosition : function(coords) {
         document.getElementById("long").innerText = coords.longitude;
@@ -131,7 +145,8 @@ var app = {
                     var messages = "";
                     for (var meldingIdx in meldinger) {
                         var melding = meldinger[meldingIdx];
-                        messages = messages + melding.melding + " on " + melding.tidspunktUtc + "<br/>";
+                        messages = messages + "[" + melding.tidspunktUtc + "]<br/>";
+                        messages = messages + melding.melding + "<br/>";
                     }
                     document.getElementById("messages").innerHTML = messages;
                 },
