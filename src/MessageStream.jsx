@@ -31,7 +31,7 @@ export default class MessageStream extends React.Component {
 
     componentDidMount () {
         this.load();
-        setTimeout(this.load, 6000);
+        setInterval(this.load, 6000);
     }
 
     render () {
