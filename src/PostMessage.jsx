@@ -32,8 +32,11 @@ export default class PostMessage extends React.Component {
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify({tekst: this.state.message}),
-            success: (data) => console.log(data),
-            error: (xhr, status, err) => console.log(`${status}: ${err}`)
+            success: () => this.context.history.pushState(null, '/message_stream'),
+            error: (xhr, status, err) => {
+                this.context.history.pushState(null, '/message_stream');
+                console.log(`${status}: ${err}`);
+            }
         });
     }
 

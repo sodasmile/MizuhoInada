@@ -21,9 +21,25 @@ export default class RegisterPost extends React.Component {
     onSubmit (e) {
         e.preventDefault();
 
-        let code = this.state.code;
+        let data = { postKode: this.state.code};
+        if (this.state.bomb)
+            data.bruktVåpen = 'BOMBE';
+        else if (this.state.trap)
+            data.bruktVåpen = 'FELLE';
 
-        // TODO: Ajax call here!
+        $.ajax({
+            url: `${settings.endpoint}/GameService`,
+            headers: {
+                'LagKode': `${settings.teamCode}`,
+                'DeltakerKode': `${settings.playerCode}`
+            },
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: () => this.context.history.pushState(null, '/menu'),
+            error: (xhr, status, err) => console.log(`${status}: ${err}`)
+        });
     }
 
     onChange (e) {
@@ -71,3 +87,8 @@ export default class RegisterPost extends React.Component {
         );
     }
 }
+
+RegisterPost.contextTypes = {
+    location: React.PropTypes.object,
+    history: React.PropTypes.object
+};
