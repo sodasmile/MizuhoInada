@@ -22,6 +22,7 @@ export default class PostMessage extends React.Component {
 
     onSubmit (e) {
         e.preventDefault();
+        let data = {tekst: `${settings.playerName}: ${this.state.message}`};
         $.ajax({
             url: `${settings.endpoint}/Meldinger`,
             headers: {
@@ -31,7 +32,7 @@ export default class PostMessage extends React.Component {
             type: 'POST',
             dataType: 'json',
             contentType: 'application/json',
-            data: JSON.stringify({tekst: this.state.message}),
+            data: JSON.stringify(data),
             success: () => this.context.history.pushState(null, '/message_stream'),
             error: (xhr, status, err) => {
                 this.context.history.pushState(null, '/message_stream');
